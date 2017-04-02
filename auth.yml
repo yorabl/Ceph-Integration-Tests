@@ -1,0 +1,23 @@
+- hosts: undercloud-0
+  tasks:
+  - name: grab auth data from openstackrc file and publish it as YAML
+    vars:
+        undercloud_rc: ~/overcloudrc
+    shell: |
+        source {{ undercloud_rc }}
+        echo "
+        auth_url: $OS_AUTH_URL
+        username: $OS_USERNAME
+        password: $OS_PASSWORD
+        project_name: ${OS_PROJECT_NAME:-$OS_TENANT_NAME}
+        "
+        if [ -n "$OS_PROJECT_DOMAIN_NAME" ]; then
+            echo "project_domain_name: $OS_PROJECT_DOMAIN_NAME"
+        fi
+        if [ -n "$OS_USER_DOMAIN_NAME" ]; then
+            echo "user_domain_name: $OS_USER_DOMAIN_NAME"
+        fi
+    register: creds
+  - set_fact:
+      os_creds: "{{ creds.stdout | from_yaml }}"
+
