@@ -43,7 +43,5 @@ ansible-playbook -i hosts test_volume_size.yml
 ## Todo
 1. add more RBD commands and parsers
 2. split RBD commands to rbd_*_fetch (fetch infromation from cluster) and rbd_* (set cluster parameters)
-3. test to file for the coming weeks:
-    a. RBD mirroring integration
-    b. scale up of Ceph storage nodes ans OSDs in an existing Ceph storage node
+
 
