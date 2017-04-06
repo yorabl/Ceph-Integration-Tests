@@ -1,21 +1,20 @@
 # RHELOSP-21987
 - include: auth.yml
-- hosts: undercloud-0
-  vars: 
-    ansible_python_interpreter: "/var/tmp/venv_shade/bin/python"
+- hosts: controllers
   tasks:
   - name: check MDS service is started
     service:
-      name: ceph-mds
+      name: ceph-mds@{{ ansible_hostname }}
       state: started
-
-  - name: check MDS is running in cluster
-    ceph_cmd: state=check
-    register: result
-  - debug: var=result.status.health.overall_status
+    when: ansible_hostname ~ "control" || ansible_hostname ~ "mds"
+  #- name: check MDS is running in cluster
+  #  ceph_cmd: state=check
+  #  register: result
+  #- debug: var=result.status.health.overall_status
 
   - name: check ceph conf for MDS section
     shell: grep -i mds /etc/ceph/ceph.conf
 
   - name: check MDS keyring is in place
-    shell: ls /var/lib/ceph/mds/ 
+    shell: ls /var/lib/ceph/mds/ceph-{{ ansible_hostname }}/
+    become: true
