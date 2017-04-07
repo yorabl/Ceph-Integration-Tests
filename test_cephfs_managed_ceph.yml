@@ -8,11 +8,6 @@
       state: started
     when: ansible_hostname ~ "control" || ansible_hostname ~ "mds"
 
-  #- name: check MDS is running in cluster
-  #  ceph_cmd: state=check
-  #  register: result
-  #- debug: var=result.status.health.overall_status
-
   - name: check ceph conf for MDS section
     shell: grep -i mds /etc/ceph/ceph.conf
 
