@@ -1,6 +1,6 @@
 # RHELOSP-21987
 - include: auth.yml
-- hosts: controllers
+- hosts: overcloud-nodes
   tasks:
   - name: check MDS service is started
     service:
