@@ -1,4 +1,4 @@
-- hosts: undercloud-0
+- hosts: undercloud
   tasks:
   - name: grab auth data from openstackrc file and publish it as YAML
     vars:
