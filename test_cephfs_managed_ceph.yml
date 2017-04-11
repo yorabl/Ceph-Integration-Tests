@@ -10,7 +10,9 @@
 
   - name: check ceph conf for MDS section
     shell: grep -i mds /etc/ceph/ceph.conf
+    when: ansible_hostname ~ "control" || ansible_hostname ~ "mds"
 
   - name: check MDS keyring is in place
     shell: ls /var/lib/ceph/mds/ceph-{{ ansible_hostname }}/
     become: true
+    when: ansible_hostname ~ "control" || ansible_hostname ~ "mds"
