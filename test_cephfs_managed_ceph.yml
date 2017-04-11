@@ -1,6 +1,6 @@
 # RHELOSP-21987
 - include: auth.yml
-- hosts: control
+- hosts: all
   tasks:
   - name: check MDS service is started
     service:
