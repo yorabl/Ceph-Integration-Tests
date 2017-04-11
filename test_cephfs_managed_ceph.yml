@@ -1,18 +1,17 @@
 # RHELOSP-21987
 - include: auth.yml
-- hosts: overcloud-nodes
+- hosts: control
   tasks:
   - name: check MDS service is started
     service:
       name: ceph-mds@{{ ansible_hostname }}
       state: started
-    when: ansible_hostname ~ "control" || ansible_hostname ~ "mds"
+
 
   - name: check ceph conf for MDS section
     shell: grep -i mds /etc/ceph/ceph.conf
-    when: ansible_hostname ~ "control" || ansible_hostname ~ "mds"
+
 
   - name: check MDS keyring is in place
     shell: ls /var/lib/ceph/mds/ceph-{{ ansible_hostname }}/
     become: true
-    when: ansible_hostname ~ "control" || ansible_hostname ~ "mds"
