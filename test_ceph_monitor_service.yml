@@ -1,0 +1,19 @@
+- name: OSP Director support for dedicated Ceph MON nodes
+  hosts: all
+  vars:
+    hosts_with_monitor: cephmonitors
+    hosts_without_monitors: control
+  tasks:
+  - name: Check Ceph cluster health
+    include: roles/monitors/cluster_health.yml
+    when: "hosts_with_monitor in ansible_hostname"
+
+  - name: RHELOSP-19650 - check Ceph monitor service is running
+    include: roles/monitors/is_ceph_monitor_started.yml
+    when: "hosts_with_monitor in ansible_hostname"
+
+  - name: ceph is not running
+    include: roles/monitors/is_ceph_monitor_stopped.yml
+    when: "hosts_without_monitors in ansible_hostname"
+
+

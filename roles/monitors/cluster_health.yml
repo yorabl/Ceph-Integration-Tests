@@ -1,0 +1,12 @@
+---
+-
+  - name: Get Ceph health
+    command: ceph health
+    become: True
+    when: "control in ansible_hostname"
+    register: result
+  - debug: var=result.stdout
+
+  - name: fail if not healthy
+    command: exit 1
+    when: "'HEALTH_OK' != result.stdout"

@@ -1,0 +1,7 @@
+---
+-
+  - name: Check if Ceph monitor service's status is stopped
+    systemd:
+      state: stopped
+      name: ceph-mon@{{ ansible_hostname }}.service
+    check_mode: yes

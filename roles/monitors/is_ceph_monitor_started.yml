@@ -1,0 +1,8 @@
+---
+-
+  - name: Check if Ceph monitor service is running
+    systemd:
+      state: started
+      name: ceph-mon@{{ ansible_hostname }}.service
+      enabled: True
+    check_mode: yes
