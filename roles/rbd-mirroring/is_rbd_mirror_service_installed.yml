@@ -1,0 +1,11 @@
+---
+-
+  - name: Check if rbd-mirror is installed
+    yum:
+      name: rbd-mirror
+      state: present
+#    command: rpm -q rbd-mirror
+#    #    register: rpm_check
+#    #    failed_when: rpm_check.stdout.find('is not installed') != -1
+#    #
+#

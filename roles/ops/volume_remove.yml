@@ -1,0 +1,7 @@
+---
+-
+  - name: remove 4g test volume
+    os_volume:
+      auth: "{{ os_creds }}"
+      state: absent
+      display_name: test_volume
