@@ -1,0 +1,10 @@
+---
+-
+  - name: create 4g test volume
+    os_volume:
+      auth: "{{ os_creds }}"
+      state: present
+      size: 4
+      display_name: test_volume
+    register: testvolume
+  - set_fact: testvolume_fact={{ testvolume }}
