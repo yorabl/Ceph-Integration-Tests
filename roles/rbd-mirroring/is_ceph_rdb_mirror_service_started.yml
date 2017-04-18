@@ -1,0 +1,7 @@
+---
+-
+  - name: check that chep-rbd-mirror service is started
+    run_once: true #TODO: look into only once ...
+    service:
+      name: ceph-rbd-mirror@openstack.service
+      state: started
