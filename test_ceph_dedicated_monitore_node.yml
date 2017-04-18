@@ -1,0 +1,17 @@
+# RHELOSP-20050
+- include: auth.yml
+- hosts: control
+
+  vars:
+    ansible_python_interpreter: "/usr/bin/python"
+  tasks:
+  - name: check that chep-rbd-mirror service is started
+    run_once: true #TODO: look into only once ...
+    service:
+      name: ceph-rbd-mirror@openstack.service
+      state: started
+# Check that there's only 1 active and 2 passive RBD mirror services in the Overcloud and the 3 of them are managed by Pacemaker
+#TODO: add pacemaker support
+#  - name: get cluster state
+#    pacemaker_cluster: state=online
+#    node: all
