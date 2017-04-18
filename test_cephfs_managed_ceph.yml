@@ -2,17 +2,16 @@
 - name: Test deployment of Ceph MDS service
   include: auth.yml
   hosts: control
-  vars:
-    service_name: ceph-mds
   tasks:
-  - name: RHELOSP-20919: check MDS service is running
+  - name: RHELOSP-20919 - check MDS service is running
     service:
-      name: {{ service_name }}@{{ ansible_hostname }}
+      name: ceph-mds@{{ ansible_hostname }}
       state: started
+    check_mode: yes
 
-  - name: RHELOSP-20919: check ceph conf for MDS section
+  - name: RHELOSP-20919 - check ceph conf for MDS section
     shell: grep -i mds /etc/ceph/ceph.conf
 
-  - name: RHELOSP-20919: check MDS keyring is in place
+  - name: RHELOSP-20919 - check MDS keyring is in place
     shell: ls /var/lib/ceph/mds/ceph-{{ ansible_hostname }}/
     become: true
