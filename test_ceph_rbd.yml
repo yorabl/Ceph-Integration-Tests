@@ -1,0 +1,22 @@
+# RHELOSP-20048
+- include: auth.yml
+- hosts: control
+
+  vars:
+    ansible_python_interpreter: "/usr/bin/python"
+  tasks:
+  - name: Check if rbd-mirror is installed
+    command: rpm -q rbd-mirror
+    register: rpm_check
+    failed_when: rpm_check.stdout.find('is not installed') != -1
+
+  - name: check that chep-rbd-mirror service is started
+    run_once: true #TODO: look into only once ...
+    service:
+      name: ceph-rbd-mirror@openstack.service
+      state: started
+
+#TODO: use pacemaker_cluster
+#  - name: get cluster state
+#    pacemaker_cluster: state=online
+#    node: all # todo: chec which node
