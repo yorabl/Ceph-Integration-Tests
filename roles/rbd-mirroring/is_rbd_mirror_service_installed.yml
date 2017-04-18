@@ -1,0 +1,6 @@
+---
+-
+  - name: Check if rbd-mirror is installed
+    yum:
+      name: rbd-mirror
+      state: present

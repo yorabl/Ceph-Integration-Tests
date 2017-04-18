@@ -1,0 +1,44 @@
+# RHELOSP-20048
+- include: auth.yml
+- hosts: controller-0
+  tasks:
+  - name: Check if rbd-mirror is installed
+    include: roles/rbd-mirroring/is_rbd_mirror_service_installed.yml
+
+  - name: check that chep-rbd-mirror service is started
+    include: roles/rbd-mirroring/is_ceph_rdb_mirror_service_started.yml
+
+# create a volume
+- hosts: undercloud-0
+  vars:
+    ansible_python_interpreter: "/var/tmp/venv_shade/bin/python"
+  tasks:
+  - name: create 4g test volume
+    os_volume:
+      auth: "{{ os_creds }}"
+      state: present
+      size: 4
+      display_name: test_volume
+    register: testvolume
+  - set_fact: testvolume_fact={{ testvolume }}
+
+# check that the volume was created with exclusive-lock
+- hosts: ceph-0
+  become: true
+  tasks:
+  - name: verify image on ceph
+    rbd: action=info image=volume-{{ hostvars['undercloud-0']['testvolume_fact'].volume.id }} pool=volumes
+    register: volumeinfo
+    failed_when: '"exclusive-lock" not in volumeinfo.image.features'
+  - debug: var=volumeinfo
+
+# remove the volume we've just created
+- hosts: undercloud-0
+  vars:
+    ansible_python_interpreter: "/var/tmp/venv_shade/bin/python"
+  tasks:
+  - name: remove 4g test volume
+    os_volume:
+      auth: "{{ os_creds }}"
+      state: absent
+      display_name: test_volume
