@@ -3,7 +3,6 @@
   - name: Get Ceph health
     command: ceph health
     become: True
-    when: "control in ansible_hostname"
     register: result
   - debug: var=result.stdout
 
