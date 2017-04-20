@@ -1,0 +1,9 @@
+README.sublime-workspace
+ssh.config.*
+*.retry
+id_rsa*
+testplay.yml
+overcloudrc
+hosts
+ssh.*
+.gitreview
