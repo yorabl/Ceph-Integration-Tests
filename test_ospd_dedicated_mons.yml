@@ -1,0 +1,53 @@
+- include: auth.yml
+- hosts: undercloud-0
+  vars: 
+    ansible_python_interpreter: "/var/tmp/venv_shade/bin/python"
+  tasks:
+  - name: remove ceph-mon service from controller
+    shell: sed -i '/CephMon/d' /usr/share/openstack-tripleo-heat-templates/roles_data.yaml
+
+  - name: add ceph-mon role data
+    blockinfile: |
+      dest=/usr/share/openstack-tripleo-heat-templates/roles_data.yaml
+      content="- name: CephMon
+        ServicesDefault:
+        - OS::TripleO::Services::CACerts
+        - OS::TripleO::Services::CephMon
+        - OS::TripleO::Services::Kernel
+        - OS::TripleO::Services::Ntp
+        - OS::TripleO::Services::Timezone
+        - OS::TripleO::Services::Snmp
+        - OS::TripleO::Services::Sshd
+        - OS::TripleO::Services::TripleoPackages
+        - OS::TripleO::Services::TripleoFirewall
+        - OS::TripleO::Services::SensuClient
+        - OS::TripleO::Services::FluentdClient
+        - OS::TripleO::Services::AuditD
+        - OS::TripleO::Services::Collectd"
+
+  - name: create flavor for ceph-mon
+    os_nova_flavor:
+      auth: "{{ os_creds }}"
+      state: present
+      name: ceph-mon
+      ram: 6144
+      vcpus: 4
+      disk: 40
+      extra_specs:
+        "cpu_arch": "x86_64"
+        "capabilities:boot_option": "local"
+        "capabilities:profile": "ceph-mon"
+
+  - name: update nodes with ironic
+    shell: ironic node-update "{{ items }}" add properties/capabilities='profile:ceph-mon,boot_option:local'
+    with-items:
+      - ceph-mon-0
+      - ceph-mon-1
+      - ceph-mon-2
+
+- hosts: ceph-0
+  - name: check ceph cluster status
+    ceph_cmd: state=check
+    register: result
+  - debug: var=result.status.health.overall_status
+      
