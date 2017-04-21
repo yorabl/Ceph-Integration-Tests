@@ -1,7 +1,7 @@
 - name: OSP Director support for dedicated Ceph MON nodes
   hosts: all
   vars:
-    hosts_with_monitor: cephmonitors
+    hosts_with_monitor: cephmonitor
     hosts_without_monitors: control
   tasks:
   - name: Check Ceph cluster health
