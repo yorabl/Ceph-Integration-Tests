@@ -15,5 +15,3 @@
   - name: ceph is not running
     include: roles/monitors/is_ceph_monitor_stopped.yml
     when: "hosts_without_monitors in ansible_hostname"
-
-

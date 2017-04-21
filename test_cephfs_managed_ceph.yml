@@ -1,6 +1,4 @@
-# RHELOSP-21987
 - name: Test deployment of Ceph MDS service
-  include: auth.yml
   hosts: control
   tasks:
   - name: RHELOSP-20919 - check MDS service is running
