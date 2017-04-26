@@ -32,7 +32,7 @@
   become: true  
   tasks:
   - name: verify image on ceph
-    rbd: action=info image={{ hostvars['undercloud-0']['testvolume'].id }} pool=images
+    rbd_image_facts: name={{ hostvars['undercloud-0']['testvolume'].id }} pool=images
     register: volumeinfo
 
 - hosts: undercloud-0
