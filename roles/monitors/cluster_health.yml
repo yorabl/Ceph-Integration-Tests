@@ -1,11 +1,11 @@
 ---
 -
-  - name: Get Ceph health
+  - name: Get ceph health
     ceph_cmd: state=check
+    become: True
     register: result
-    become: yes
-  - debug: var=result.status.health.overall_status
+  - debug: var=result
 
-  - name: Ceph cluster is HEALTH_OK
-    command: exit 1
-    when: "'HEALTH_OK' != result.status.health.overall_status"
+  - name: Ceph is not healty
+    command: echo "{{result.status.healt.overall_status}}" && exit 1
+    when: "result.status.healt.overall_status != 'HEALTH_OK'"
