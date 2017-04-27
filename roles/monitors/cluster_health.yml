@@ -1,11 +1,11 @@
 ---
 -
-  - name: Get Ceph health
-    command: ceph health
+  - name: Get ceph health
+    ceph_cmd: state=check
     become: True
     register: result
-  - debug: var=result.stdout
+  - debug: var=result
 
-  - name: fail if not healthy
+  - name: Fail if not healthy
     command: exit 1
-    when: "'HEALTH_OK' != result.stdout"
+    when: "result.status.healt.overall_status != 'HEALTH_OK'"
