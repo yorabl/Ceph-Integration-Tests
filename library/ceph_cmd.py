@@ -42,8 +42,8 @@ def main():
     fields = {
       "state": {
         "default": "check",
-        "choices": ['check'],
-        "type": 'str'
+        "choices": ["check"],
+        "type": "str"
       },
     }
 

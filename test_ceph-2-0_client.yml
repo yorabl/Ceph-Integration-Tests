@@ -1,0 +1,9 @@
+---
+- name: BRHELOSP-21082 - ackwards compatability for Ceph 2.0 client with Ceph 1.3 cluster
+  hosts: control
+  tasks:
+  - lineinfile:
+      path: /etc/ceph/ceph.conf
+      line: 'rbd_default_features = 1'
+      state: present
+    check_mode: yes
