@@ -1,0 +1,14 @@
+---
+    - name: get number of osds
+      ceph_cmd: state=check
+      register: result
+      become: yes
+    - debug: var=result.status.osdmap.osdmap
+
+    - name: check all OSDs are up
+      command: echo "not all OSDs are up" && exit 1
+      when: result.status.osdmap.osdmap.num_osds != result.status.osdmap.osdmap.num_up_osds
+
+    - name: chcek all OSDs are in
+      command: echo "not all OSDs are in"
+      when: result.status.osdmap.osdmap.num_osds != result.status.osdmap.osdmap.num_in_osds
