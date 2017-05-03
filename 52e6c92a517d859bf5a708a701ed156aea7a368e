@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "225b9d85_20901b17",
+        "filename": "roles/ops/volume_create.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1002571
+      },
+      "writtenOn": "2017-05-03T13:33:03Z",
+      "side": 1,
+      "message": "by this way you can create just one type of volume with one name and one size. Don\u0027t do this in a role, put it inside the test. This kind of duplications are expected.\n\nIt\u0027s very crazy to put and get data from roles, so, use roles just for atomic operations, which doesn\u0027t need any params or returning data back.",
+      "revId": "52e6c92a517d859bf5a708a701ed156aea7a368e",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "70d6f500_3a4af5b5",
+        "filename": "roles/ops/volume_remove.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1002571
+      },
+      "writtenOn": "2017-05-03T13:33:03Z",
+      "side": 1,
+      "message": "same as volume create ^^^",
+      "revId": "52e6c92a517d859bf5a708a701ed156aea7a368e",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0db557d6_1cbe519f",
+        "filename": "test_ceph_rbd.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1002571
+      },
+      "writtenOn": "2017-05-03T13:33:03Z",
+      "side": 1,
+      "message": "use controller group or controller-0",
+      "range": {
+        "startLine": 3,
+        "startChar": 9,
+        "endLine": 3,
+        "endChar": 16
+      },
+      "revId": "52e6c92a517d859bf5a708a701ed156aea7a368e",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
