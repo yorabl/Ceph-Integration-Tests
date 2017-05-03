@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "f3ad9f89_a4b6bddd",
+        "filename": "roles/ops/volume_create.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1004632
+      },
+      "writtenOn": "2017-05-03T14:15:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "225b9d85_20901b17",
+      "revId": "52e6c92a517d859bf5a708a701ed156aea7a368e",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "70d6f500_3a4af5b5",
         "filename": "roles/ops/volume_remove.yml",
         "patchSetId": 3
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "635d84fd_35104720",
+        "filename": "roles/ops/volume_remove.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1004632
+      },
+      "writtenOn": "2017-05-03T14:15:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "70d6f500_3a4af5b5",
+      "revId": "52e6c92a517d859bf5a708a701ed156aea7a368e",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0db557d6_1cbe519f",
         "filename": "test_ceph_rbd.yml",
         "patchSetId": 3
@@ -47,6 +83,30 @@
       "writtenOn": "2017-05-03T13:33:03Z",
       "side": 1,
       "message": "use controller group or controller-0",
+      "range": {
+        "startLine": 3,
+        "startChar": 9,
+        "endLine": 3,
+        "endChar": 16
+      },
+      "revId": "52e6c92a517d859bf5a708a701ed156aea7a368e",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1f850757_368f9213",
+        "filename": "test_ceph_rbd.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1004632
+      },
+      "writtenOn": "2017-05-03T14:15:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0db557d6_1cbe519f",
       "range": {
         "startLine": 3,
         "startChar": 9,
