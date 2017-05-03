@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0de13b3d_341f97d1",
+        "filename": "roles/rbd-mirroring/is_ceph_rdb_mirror_service_started.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1002571
+      },
+      "writtenOn": "2017-05-03T14:35:23Z",
+      "side": 1,
+      "message": "remove TODO from code. It\u0027s public available on github. Do you want to be so unprofessional? ;)",
+      "revId": "2f2bd19e0b3347f135debae945d681c57804a5ac",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "963a3aaf_8e97d294",
+        "filename": "test_ceph_rbd.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1002571
+      },
+      "writtenOn": "2017-05-03T14:35:23Z",
+      "side": 1,
+      "message": "remove unnecessary space",
+      "revId": "2f2bd19e0b3347f135debae945d681c57804a5ac",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
