@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cdc4967e_7825ad4c",
+        "filename": "test_ceph_dedicated_monitore_node.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1002571
+      },
+      "writtenOn": "2017-05-03T12:53:16Z",
+      "side": 1,
+      "message": "remove TODO, do it now.",
+      "range": {
+        "startLine": 9,
+        "startChar": 19,
+        "endLine": 9,
+        "endChar": 20
+      },
+      "revId": "eaa0a1aff428124017a4ed4966c56c1f2fb3700f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3420c021_1966d12d",
+        "filename": "test_ceph_dedicated_monitore_node.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1002571
+      },
+      "writtenOn": "2017-05-03T12:53:16Z",
+      "side": 1,
+      "message": "same as before, remove TODO, keep this locally in your notes",
+      "revId": "eaa0a1aff428124017a4ed4966c56c1f2fb3700f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "27b7825a_08097740",
+        "filename": "test_ceph_dedicated_monitore_node.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1002571
+      },
+      "writtenOn": "2017-05-03T12:53:16Z",
+      "side": 1,
+      "message": "You don\u0027t wanna run pacemaker check on all nodes. Take a look into infrared inventory file to see which nodes are available.",
+      "revId": "eaa0a1aff428124017a4ed4966c56c1f2fb3700f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
