@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "77a46745_01df06ab",
+        "filename": "roles/rbd-mirroring/is_ceph_rdb_mirror_service_started.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1004632
+      },
+      "writtenOn": "2017-05-03T16:14:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e0ec7741_c2b41c16",
+      "revId": "b717df34d60499d0d2c327a38ee885bc829a78aa",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3ea17162_4ebbac81",
         "filename": "test_ceph_rbd.yml",
         "patchSetId": 6
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "7cd70149_e8228b02",
+        "filename": "test_ceph_rbd.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1004632
+      },
+      "writtenOn": "2017-05-03T16:14:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ea17162_4ebbac81",
+      "revId": "b717df34d60499d0d2c327a38ee885bc829a78aa",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b351a80c_fb9f122c",
         "filename": "test_ceph_rbd.yml",
         "patchSetId": 6
@@ -47,6 +83,24 @@
       "writtenOn": "2017-05-03T15:50:55Z",
       "side": 1,
       "message": "editor issue",
+      "revId": "b717df34d60499d0d2c327a38ee885bc829a78aa",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e79ee6bf_5eb2db6b",
+        "filename": "test_ceph_rbd.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1004632
+      },
+      "writtenOn": "2017-05-03T16:14:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b351a80c_fb9f122c",
       "revId": "b717df34d60499d0d2c327a38ee885bc829a78aa",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
