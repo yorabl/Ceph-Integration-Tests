@@ -142,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "5a64a4e5_38ad031b",
+        "filename": "test_ceph_rbd.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1004632
+      },
+      "writtenOn": "2017-05-04T08:46:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "326e8158_7b99c653",
+      "range": {
+        "startLine": 16,
+        "startChar": 9,
+        "endLine": 16,
+        "endChar": 21
+      },
+      "revId": "52e6c92a517d859bf5a708a701ed156aea7a368e",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9cd506c7_0724a0fe",
         "filename": "test_ceph_rbd.yml",
         "patchSetId": 3
@@ -153,6 +177,30 @@
       "writtenOn": "2017-05-03T19:55:49Z",
       "side": 1,
       "message": "this is redundant: this parameter is set in the inventory and should not be set in the playbook",
+      "range": {
+        "startLine": 18,
+        "startChar": 3,
+        "endLine": 18,
+        "endChar": 64
+      },
+      "revId": "52e6c92a517d859bf5a708a701ed156aea7a368e",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "72d8b181_3cd3fc7e",
+        "filename": "test_ceph_rbd.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1004632
+      },
+      "writtenOn": "2017-05-04T08:46:55Z",
+      "side": 1,
+      "message": "please be more specific, defined were in the inventory ?\nA working example would be nice ...",
+      "parentUuid": "9cd506c7_0724a0fe",
       "range": {
         "startLine": 18,
         "startChar": 3,
