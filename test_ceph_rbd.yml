@@ -1,4 +1,4 @@
-# RHELOSP-20048
+# Polarion id - RHELOSP-20048
 - include: auth.yml
 - hosts: controller-0
   tasks:
