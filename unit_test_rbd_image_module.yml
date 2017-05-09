@@ -1,0 +1,48 @@
+- include: auth.yml
+
+- hosts: undercloud-0
+  vars: 
+    ansible_python_interpreter: "/var/tmp/venv_shade/bin/python"
+  tasks:  
+  - name: create 4g test volume
+    os_volume:
+      auth: "{{ os_creds }}"
+      state: present
+      size: 4
+      display_name: test_volume
+    register: testvolume
+  - set_fact: testvolume_fact={{ testvolume }}
+
+- hosts: ceph-0
+  become: true
+  tasks:
+  - name: verify image on ceph
+    rbd_image_facts: name=volume-{{ hostvars['undercloud-0']['testvolume_fact'].volume.id }}
+
+
+- hosts: undercloud-0
+  vars: 
+    ansible_python_interpreter: "/var/tmp/venv_shade/bin/python"
+  tasks:  
+  - name: remove 4g test volume
+    os_volume:
+      auth: "{{ os_creds }}"
+      state: absent
+      display_name: test_volume
+
+- hosts: ceph-0
+  become: true
+  tasks:
+  - name: create image on ceph with ceph module
+    rbd_image: state=present name="test" size="4G" pool="volumes"
+    register: testvolume
+  - debug: var=testvolume
+
+
+- hosts: ceph-0
+  become: true
+  tasks:
+  - name: remove image on ceph with ceph module
+    rbd_image: state=absent name="test"
+
+
