@@ -19,7 +19,7 @@
     ceph_cmd: state=check
 
   - name: verify image on ceph
-    rbd: action=info image=volume-{{ hostvars['undercloud-0']['testvolume_fact'].volume.id }} pool=volumes
+    rbd_image_facts: name=volume-{{ hostvars['undercloud-0']['testvolume_fact'].volume.id }} pool=volumes
     register: volumeinfo
    
   - name: check volume size
