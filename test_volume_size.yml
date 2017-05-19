@@ -19,22 +19,19 @@
     ceph_cmd: state=check
 
   - name: verify image on ceph
-    rbd: action=info image=volume-{{ hostvars['undercloud-0']['testvolume_fact'].volume.id }} pool=volumes
+    rbd_image_facts: name=volume-{{ hostvars['undercloud-0']['testvolume_fact'].volume.id }} pool=volumes
     register: volumeinfo
-   
+
   - name: check volume size
     shell: echo "Volume size matched."
     when: ("{{ hostvars['undercloud-0']['testvolume_fact'].volume.size }}" == "{{ volumeinfo.image.object_size }}")
 
 - hosts: undercloud-0
-  vars: 
+  vars:
     ansible_python_interpreter: "/var/tmp/venv_shade/bin/python"
-  tasks:  
+  tasks:
   - name: remove 4g test volume
     os_volume:
       auth: "{{ os_creds }}"
       state: absent
       display_name: test_volume
-
-
-  
