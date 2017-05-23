@@ -27,7 +27,7 @@
   become: true
   tasks:
   - name: verify image on ceph
-    rbd: action=info image=volume-{{ hostvars['undercloud-0']['testvolume_fact'].volume.id }} pool=volumes
+    rbd_image_facts: name=volume-{{ hostvars['undercloud-0']['testvolume_fact'].volume.id }} pool=volumes
     register: volumeinfo
     failed_when: '"exclusive-lock" not in volumeinfo.image.features'
   - debug: var=volumeinfo
