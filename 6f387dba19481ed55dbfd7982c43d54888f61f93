@@ -1,0 +1,7 @@
+Code-Review+2: Tomas Rusnak <trusnak@redhat.com>
+Verified+1: Tomas Rusnak <trusnak@redhat.com>
+Submitted-by: Tomas Rusnak <trusnak@redhat.com>
+Submitted-at: Tue, 06 Jun 2017 11:03:06 -0400
+Reviewed-on: https://review.gerrithub.io/361164
+Project: yorabl/Ceph-Integration-Tests
+Branch: refs/heads/master
