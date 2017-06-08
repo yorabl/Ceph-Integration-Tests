@@ -51,7 +51,7 @@ def cmd_runner(m, params):
       return True, False, dict(msg="failed: '%s'" % (err), stdout=out, stderr=err)
     if out:
       data = json.loads(out)
-      data['size'] = str(int(data['size'])/(1024**2))
+      #data['size'] = str(int(data['size'])/(1024**2))
       return False, False, dict(image=data)
   return True, False, dict(response="failed, name must be specified")
 
