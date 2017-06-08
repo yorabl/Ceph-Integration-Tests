@@ -1,0 +1,22 @@
+- hosts: ceph-0
+  become: true
+  tasks:
+    # RHELOSP-18488 - Set osd crush update on start parameter
+    - name: check if parameter was set in ceph.conf
+      shell: grep osd_crush_update_on_start /etc/ceph/ceph.conf
+      register: result
+      failed_when: result.rc != 0
+
+- hosts: ceph:compute
+  become: true
+  tasks:
+    # RHELOSP-19058 - Check number of kernel_pid.max on ceph and compute nodes 
+    - name: check for kernel.pid_max value
+      shell: cat /proc/sys/kernel/pid_max
+      register: result
+      failed_when: result.stdout|int < 1048576
+    # BZ1459891 - check number of kernel.threads-max on ceph and compute nodes
+    - name: check for kernel.threads-max value
+      shell: cat /proc/sys/kernel/threads-max
+      register: result
+      failed_when: result.stdout|int < 1048576
