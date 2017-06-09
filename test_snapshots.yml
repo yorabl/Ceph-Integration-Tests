@@ -1,0 +1,66 @@
+# RHELOSP7-4737 - [Ceph Integration] Create Snapshots of Volumes
+- include: auth.yml
+- hosts: undercloud-0
+  vars:
+    ansible_python_interpreter: "/var/tmp/venv_shade/bin/python"
+  environment: "{{ env }}"
+  tasks:
+  - name: create 1g test volume
+    os_volume:
+      auth: "{{ os_creds }}"
+      state: present
+      size: 1
+      display_name: test_volume
+    register: testvolume
+  - set_fact: testvolume_fact={{ testvolume }}
+
+  - name: check if volume is available
+    shell: openstack volume show {{ hostvars['undercloud-0']['testvolume_fact'].volume.id }} -f json
+    register: result
+    until: result.stdout.find("available") != -1
+    retries: 5
+    delay: 10
+
+  - name: create volume snapshot
+    shell: openstack volume snapshot create --volume {{ hostvars['undercloud-0']['testvolume_fact'].volume.id }} test_snap -f json
+    register: snapshot
+  - set_fact: snapshot_fact={{ snapshot.stdout }}
+
+  - name: check if snapshot is available
+    shell: openstack volume snapshot show  {{ hostvars['undercloud-0']['snapshot_fact'].id }} -f json
+    register: result
+    until: result.stdout.find("available") != -1
+    retries: 5
+    delay: 10
+
+- hosts: ceph-0
+  become: true
+  tasks:
+  - name: check snapshot was created on ceph
+    rbd_snap_facts: name=volume-{{ hostvars['undercloud-0']['testvolume_fact'].volume.id }}
+    register: rbd_snapshot
+    failed_when: hostvars['undercloud-0']['snapshot_fact'].id in rbd_snapshot
+
+- hosts: undercloud-0
+  environment: "{{ env }}"
+  vars: 
+    ansible_python_interpreter: "/var/tmp/venv_shade/bin/python"
+  tasks:
+  - name: remove snapshot
+    shell: openstack volume snapshot delete {{ hostvars['undercloud-0']['snapshot_fact'].id }}
+
+- hosts: ceph-0
+  become: true
+  tasks:
+  - name: check if snapshot was deleted
+    rbd_snap_facts: name=volume-{{ hostvars['undercloud-0']['testvolume_fact'].volume.id }}
+
+- hosts: undercloud-0
+  vars:
+    ansible_python_interpreter: "/var/tmp/venv_shade/bin/python"
+  tasks:
+  - name: remove 1g test volume
+    os_volume:
+      auth: "{{ os_creds }}"
+      state: absent
+      display_name: test_volume

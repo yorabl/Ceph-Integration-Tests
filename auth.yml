@@ -2,9 +2,9 @@
   tasks:
   - name: grab auth data from openstackrc file and publish it as YAML
     vars:
-        undercloud_rc: ~/overcloudrc
+        overcloud_rc: ~/overcloudrc.v3
     shell: |
-        source {{ undercloud_rc }}
+        source {{ overcloud_rc }}
         echo "
         auth_url: $OS_AUTH_URL
         username: $OS_USERNAME
@@ -21,3 +21,15 @@
   - set_fact:
       os_creds: "{{ creds.stdout | from_yaml }}"
 
+  - set_fact:
+      env:
+        OS_AUTH_TYPE: password
+        OS_AUTH_URL: "{{ os_creds.auth_url }}"
+        OS_CLOUDNAME: overcloud
+        OS_IDENTITY_API_VERSION: 3
+        OS_NO_CACHE: True
+        OS_PASSWORD: "{{ os_creds.password }}"
+        OS_PROJECT_DOMAIN_NAME: Default
+        OS_PROJECT_NAME: "{{ os_creds.project_name }}"
+        OS_USERNAME: "{{ os_creds.username }}"
+        OS_USER_DOMAIN_NAME: Default
