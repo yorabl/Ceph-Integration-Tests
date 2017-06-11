@@ -1,0 +1,33 @@
+- include: auth.yml
+- hosts: undercloud-0
+  vars: 
+    ansible_python_interpreter: "/var/tmp/venv_shade/bin/python"
+  environment: "{{ env }}"
+
+- hosts: controller
+  become: true
+  tasks:
+  - name: MDS is running on all controllers
+    command: systemctl status ceph-mds.target
+    ignore_errors: yes
+    changed_when: false
+    register: service_mds_status
+
+  - name: Report status of Apache
+    fail:
+      msg: |
+        Service ceph-mds is not running.
+        Output of `systemctl status ceph-mds`:
+        {{ service_mds_status.stdout }}
+        {{ service_mds_status.stderr }}
+    when: service_mds_status | failed
+
+  - name: check for manilla services
+    command: systemctl status {{ item }}
+    with_items:
+      - openstack-manila-scheduler
+      - openstack-manila-api
+      - openstack-manila-share
+      - openstack-manila-data
+
+  
