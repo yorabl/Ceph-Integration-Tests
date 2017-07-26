@@ -28,11 +28,38 @@ description:
   - Manages ceph rbd snapshot command line tool
   version_added: "1.0"
 options:
-  status:
+  state:
     description:
-      - manage rbd snapshots
+      - manage rbd snapshots states
+    choices: ['present', 'absent', 'protect', 'unprotect', 'rollback', 'rename']
     required: True
     default: none
+  name:
+    description:
+      - Name or ID of image with snapshot
+    required: True
+    default: none
+  pool:
+    description:
+      - Pool where image is stored
+    required: False
+    default: volumes
+  snap:
+    description:
+      - Snapshot name
+    required: False
+    default: none
+  destpool:
+    description:
+      - Destination pool where snapshot will be stored in rename mode
+    required: False
+    default: none
+  destsnap:
+    description:
+      - Name of the destination snapshot in rename mode
+    required: False
+    default: none
+extends_documentation_fragment: ceph
 '''
 
 import sys

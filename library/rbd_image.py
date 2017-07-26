@@ -28,11 +28,27 @@ description:
   - Manages ceph rbd image command line tool
   version_added: "1.0"
 options:
-  status:
+  state:
     description:
-      - manage rbd images
+      - manage rbd images with present or absent state
     required: True
     default: none
+  name:
+    description:
+      - Name or ID of the image
+    required: True
+    default: none
+  size:
+    description:
+      - Size of the image
+    required: False
+    default: none
+  pool:
+    description:
+      - Pool where image is stored
+    required: False
+    default: volumes
+extends_documentation_fragment: ceph
 '''
 
 import sys

@@ -35,12 +35,14 @@ requirements:
 options:
   image:
     description:
-      - Name or ID of the image
+      - Name or ID of the snapshot
     required: true
+    default: none
   pool:
     description:
-      - Name of the pool where  is stored
-    required: false
+      - Name of the pool where snapshot is stored
+    required: False
+    default: volumes
 extends_documentation_fragment: ceph
 '''
 

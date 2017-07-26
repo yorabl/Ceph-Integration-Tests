@@ -26,7 +26,7 @@ short_description: Retrieve facts about an image within rbd command.
 version_added: "1.0"
 author: "Tomas Rusnak (trusnak@redhat.com)"
 description:
-  - Retrieve facts about a image image from rbd command.
+  - Retrieve facts about a image from rbd command.
 notes:
   - Facts are placed in the C(rbd) variable.
 requirements:

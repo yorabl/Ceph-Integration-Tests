@@ -1,12 +1,25 @@
 #!/usr/bin/python
-
-import sys
-import json
-import os
-import shlex
-from ansible.module_utils.basic import AnsibleModule
-
 # -*- coding: utf-8 -*-
+
+# Copyright (c) 2017 Tomas Rusnak <trusnak@redhat.com>
+#
+# This module is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This software is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this software.  If not, see <http://www.gnu.org/licenses/>.
+
+ANSIBLE_METADATA = {'metadata_version': '1.0',
+                    'status': ['preview'],
+                    'supported_by': 'community'}
+
 DOCUMENTATION = '''
 ---
 module: ceph_cmd
@@ -20,13 +33,14 @@ options:
       - get ceph cluster status
     required: false
     default: check
-  rbd:
-    description:
-      - manage rbd images
-    required: false
-    default: info
+extends_documentation_fragment: ceph
 '''
 
+import sys
+import json
+import os
+import shlex
+from ansible.module_utils.basic import AnsibleModule
 
 def state(m, data):
     cmd = "ceph -s --format json"
